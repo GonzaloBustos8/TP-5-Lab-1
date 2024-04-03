@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  * @author busto
  */
 public class TP5View extends javax.swing.JFrame {
-    
+
     private DefaultTableModel modelo = new DefaultTableModel();
 
     /**
@@ -63,13 +63,13 @@ public class TP5View extends javax.swing.JFrame {
 
         jtProductos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Precio", "Categoria"
             }
         ));
         jScrollPane1.setViewportView(jtProductos);
@@ -103,16 +103,15 @@ public class TP5View extends javax.swing.JFrame {
                                 .addGap(106, 106, 106)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addGap(24, 24, 24)
+                                        .addComponent(Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextField_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -122,33 +121,40 @@ public class TP5View extends javax.swing.JFrame {
                 .addComponent(jComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(15, 15, 15)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Nombre)
-                    .addComponent(jTextField_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jTextField_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Nombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField_precio, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField_precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37)
                 .addComponent(jbCargar)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
         );
 
+        jScrollPane1.getAccessibleContext().setAccessibleDescription("");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCargarActionPerformed
-        // TODO add your handling code here:
-        
-        
+        String nombre = String.valueOf(jTextField_nombre.getText());
+        String precio = jTextField_precio.getText();
+        String categoria = jComboBox.getItemAt(jComboBox.getSelectedIndex());
+        modelo.addRow(new Object[]{nombre, categoria, precio});
+        jTextField_nombre.setText("");
+        jTextField_precio.setText("");
+        jComboBox.setName("");
+
     }//GEN-LAST:event_jbCargarActionPerformed
 
     private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jComboBoxActionPerformed
 
     /**
@@ -198,19 +204,19 @@ public class TP5View extends javax.swing.JFrame {
     private javax.swing.JTable jtProductos;
     // End of variables declaration//GEN-END:variables
 
-    private void armarCabecera(){
-    
+    private void armarCabecera() {
+
         modelo.addColumn("PRODUCTO");
         modelo.addColumn("CATEGORIA");
         modelo.addColumn("PRECIO");
         jtProductos.setModel(modelo);
     }
-    
-    private void cargarDatos(Producto producto){
-        modelo.addRow(new Object[]{producto.getCategoria(),producto.getPrecio()});
+
+    private void cargarDatos(Producto producto) {
+        modelo.addRow(new Object[]{producto.getCategoria(), producto.getPrecio()});
     }
-    
-     private void cargarCombo(){
+
+    private void cargarCombo() {
         jComboBox.addItem("Alimento");
         jComboBox.addItem("Ropa");
         jComboBox.addItem("Deporte");
