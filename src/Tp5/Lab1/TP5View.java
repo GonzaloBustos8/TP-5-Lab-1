@@ -142,14 +142,25 @@ public class TP5View extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCargarActionPerformed
-        String nombre = String.valueOf(jTextField_nombre.getText());
-        String precio = jTextField_precio.getText();
-        String categoria = jComboBox.getItemAt(jComboBox.getSelectedIndex());
-        modelo.addRow(new Object[]{nombre, categoria, precio});
-        jTextField_nombre.setText("");
-        jTextField_precio.setText("");
-        jComboBox.setName("");
+        if (jTextField_nombre.getText().isEmpty() || jTextField_precio.getText().isEmpty() ) {
+            JOptionPane.showMessageDialog(this, "No debe ingresar espacios en blanco.");
+            return; 
+        }
+        try {
+            String nombre = String.valueOf(jTextField_nombre.getText());
+            int precio = Integer.parseInt (jTextField_precio.getText());
+            String categoria = jComboBox.getItemAt(jComboBox.getSelectedIndex());
+            modelo.addRow(new Object[]{nombre, categoria, precio});
+            jTextField_nombre.setText("");
+            jTextField_precio.setText("");
+            jComboBox.setName("");
+            
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Se debe ingresar el precio en numeros");
+        }
+        
 
+        
     }//GEN-LAST:event_jbCargarActionPerformed
 
     private void jComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxActionPerformed

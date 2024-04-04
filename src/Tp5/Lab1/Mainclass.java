@@ -16,6 +16,8 @@ public class Mainclass {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        TP5View ventana = new TP5View();
+        ventana.setVisible(true);
         // TODO code application logic here
     
 /** Crea una aplicación GUI en Java que gestione una lista de productos. La interfaz
